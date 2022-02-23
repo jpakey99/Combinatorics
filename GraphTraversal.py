@@ -13,6 +13,9 @@ def new_g(n, start, end, i, s, possibilities):
     :param possibilities: A dictionary that has all nodes as keys and the values are out-vertices from that node.
     :return: Nothing, but will print out all paths as strings as well as calculate total number of paths
     """
+    if n == 0:
+        globals()['total'] = 0
+        return
     if i == n:
         if end is None:
             globals()['total'] += len(possibilities[s[-1]])
@@ -24,10 +27,17 @@ def new_g(n, start, end, i, s, possibilities):
                 print(s + end)
         return
     if i == 0:
+        globals()['total'] = 0
         new_g(n, start, end, i + 1, start, possibilities)
+        return
     else:
         for p in possibilities[s[-1]]:
             new_g(n, start, end, i + 1, s + p, possibilities)
+
+
+
+def get_total():
+    return globals()['total']
 
 
 if __name__ == '__main__':
@@ -37,4 +47,4 @@ if __name__ == '__main__':
         # 'C': ['A','B', 'C']
     }
     new_g(4, 'A', 'A', 0, '', possibilities)
-    print(globals()['total'])
+    print(get_total())
