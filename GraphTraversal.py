@@ -35,7 +35,6 @@ def new_g(n, start, end, i, s, possibilities):
             new_g(n, start, end, i + 1, s + p, possibilities)
 
 
-
 def get_total():
     return globals()['total']
 
